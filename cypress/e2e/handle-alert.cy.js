@@ -35,9 +35,9 @@ describe('', () => {
         cy.visit('/')
         cy.get('#alerttest').click()
         cy.window().then(function(p){
-            cy.stub(p, "prompt").returns("Testing handle promt alert")
+            cy.stub(p, "prompt").returns("Testing handle prompt alert")
             cy.get('#promptexample').click()
-            cy.get('#promptreturn').contains('Testing handle promt alert')
+            cy.get('#promptreturn').contains('Testing handle prompt alert')
         })
     })
 })
