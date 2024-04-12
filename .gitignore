@@ -1,0 +1,3 @@
+node_modules
+testReports
+cypress-mochawesome-reporter.log
