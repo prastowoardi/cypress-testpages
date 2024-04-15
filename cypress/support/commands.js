@@ -23,3 +23,9 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('randomChoose', { prevSubject: true }, ($subject) => {
+    const elements = $subject.get()
+    const randomIndex = Math.floor(Math.random() * elements.length)
+    cy.wrap(elements[randomIndex]).click()
+})
