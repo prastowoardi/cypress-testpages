@@ -12,6 +12,7 @@ describe('iFrame handle', () => {
             const frameUrl = $frame.prop('src')
             cy.log(`URL frame: ${frameUrl}`)
             cy.visit(frameUrl)
+            cy.url().should('eq','https://testpages.eviltester.com/styled/frames/frames-top.html')
         })
     })
 
@@ -36,6 +37,7 @@ describe('iFrame handle', () => {
             const frameUrl = $frame.prop('src')
             cy.log(`URL frame: ${frameUrl}`)
             cy.visit(frameUrl)
+            cy.url().should('eq','https://testpages.eviltester.com/styled/frames/frames-footer.html')
         })
     })
 })
