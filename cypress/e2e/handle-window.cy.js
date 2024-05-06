@@ -59,4 +59,28 @@ describe('Handle Window', () => {
         cy.get('.styled-click-button').click()
     })
     
+    it('Attributes in New Page', () => {
+        cy.visit('/');
+        cy.get('#windowstest').click();
+    
+        cy.window().then(win => {
+            cy.stub(win, 'open').as('windowOpen');
+        });
+    
+        cy.get('#goalerts').then($link => {
+            const onclickValue = $link.attr('onclick');
+            const urlMatch = onclickValue.match(/window\.open\('([^']+)'/);
+            if (urlMatch && urlMatch.length > 1) {
+                let url = urlMatch[1];
+                url = url.replace('/styled/', '/');
+                cy.visit(url);
+            } else {
+                throw new Error('Unable to extract URL from onclick attribute');
+            }
+        });
+    
+        cy.wait(1000);
+    
+        cy.get('@windowOpen').should('not.be.called');
+    });
 })
